@@ -2,7 +2,7 @@
 
 import React, { Suspense, useState, useEffect, useCallback, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
+import { ContactShadows, Environment, OrbitControls, useProgress } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import Computer, { type ScreenInfo } from "./Computer";
@@ -12,19 +12,37 @@ import CameraRig from "./CameraRig";
 const FOV = 32;
 const START: [number, number, number] = [0, 1.2, 5.2];
 
-export default function Scene() {
+type SceneProps = {
+  onProgressChange?: (progress: number) => void;
+  onReadyChange?: (ready: boolean) => void;
+};
+
+export default function Scene({ onProgressChange, onReadyChange }: SceneProps) {
   const [screenInfo, setScreenInfo] = useState<ScreenInfo | null>(null);
   const [glError, setGlError] = useState<string | null>(null);
   const [showDebugBox, setShowDebugBox] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const { active, progress } = useProgress();
   const orbitRef = useRef<OrbitControlsImpl | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const p = new URLSearchParams(window.location.search);
     setShowDebugBox(p.has("calibrate"));
   }, []);
+
+  useEffect(() => {
+    onProgressChange?.(Math.max(0, Math.min(100, progress)));
+  }, [progress, onProgressChange]);
+
+  useEffect(() => {
+    // Consider scene "ready" once assets are loaded and we have calibrated
+    // screen information from the model.
+    const ready = !active && progress >= 100 && !!screenInfo;
+    onReadyChange?.(ready);
+  }, [active, progress, screenInfo, onReadyChange]);
 
   useEffect(() => {
     if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
@@ -82,6 +100,7 @@ export default function Scene() {
   const handleCreated = useCallback(
     (state: { gl: { domElement: HTMLCanvasElement } }) => {
       const canvas = state.gl.domElement;
+      canvasRef.current = canvas;
       const onLost = (e: Event) => {
         e.preventDefault();
         console.warn("[Scene] WebGL context lost, will attempt restore.");
@@ -90,6 +109,55 @@ export default function Scene() {
     },
     [],
   );
+
+  useEffect(() => {
+    if (!isTouchDevice) return;
+    const canvas = canvasRef.current;
+    const controls = orbitRef.current;
+    if (!canvas || !controls) return;
+
+    // Mobile interaction contract:
+    // - 1 finger: rotate model (lock canvas touch-action to prevent page pan).
+    // - 2 fingers: disable orbit and allow native page scroll/pinch.
+    canvas.style.touchAction = "none";
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length >= 2) {
+        controls.enabled = false;
+        canvas.style.touchAction = "pan-y pinch-zoom";
+      } else {
+        controls.enabled = true;
+        canvas.style.touchAction = "none";
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length >= 2) {
+        controls.enabled = false;
+        canvas.style.touchAction = "pan-y pinch-zoom";
+      }
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (e.touches.length <= 1) {
+        controls.enabled = true;
+        canvas.style.touchAction = "none";
+      }
+    };
+
+    canvas.addEventListener("touchstart", onTouchStart, { passive: true });
+    canvas.addEventListener("touchmove", onTouchMove, { passive: true });
+    canvas.addEventListener("touchend", onTouchEnd, { passive: true });
+    canvas.addEventListener("touchcancel", onTouchEnd, { passive: true });
+
+    return () => {
+      canvas.removeEventListener("touchstart", onTouchStart);
+      canvas.removeEventListener("touchmove", onTouchMove);
+      canvas.removeEventListener("touchend", onTouchEnd);
+      canvas.removeEventListener("touchcancel", onTouchEnd);
+      canvas.style.touchAction = "";
+    };
+  }, [isTouchDevice]);
 
   if (glError) {
     return (
@@ -119,7 +187,7 @@ export default function Scene() {
       style={{
         width: "100%",
         height: "100%",
-        touchAction: "pan-y",
+        touchAction: isTouchDevice ? "none" : "pan-y",
         transition: "opacity 120ms linear",
       }}
     >
@@ -188,8 +256,8 @@ export default function Scene() {
 
         <OrbitControls
           ref={orbitRef}
-          enabled={!isTouchDevice}
-          enableRotate={!isTouchDevice}
+          enabled
+          enableRotate
           enablePan={false}
           enableZoom={false}
           enableDamping
