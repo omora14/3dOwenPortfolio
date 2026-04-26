@@ -16,6 +16,7 @@ export default function Scene() {
   const [screenInfo, setScreenInfo] = useState<ScreenInfo | null>(null);
   const [glError, setGlError] = useState<string | null>(null);
   const [showDebugBox, setShowDebugBox] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const orbitRef = useRef<OrbitControlsImpl | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -23,6 +24,17 @@ export default function Scene() {
     if (typeof window === "undefined") return;
     const p = new URLSearchParams(window.location.search);
     setShowDebugBox(p.has("calibrate"));
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+      return;
+    }
+    const mq = window.matchMedia("(pointer: coarse)");
+    const apply = () => setIsTouchDevice(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, []);
 
   // Cross-fade canvas out from 0.9 -> 1.0 scroll progress so the FullscreenOS
@@ -107,6 +119,7 @@ export default function Scene() {
       style={{
         width: "100%",
         height: "100%",
+        touchAction: "pan-y",
         transition: "opacity 120ms linear",
       }}
     >
@@ -175,6 +188,8 @@ export default function Scene() {
 
         <OrbitControls
           ref={orbitRef}
+          enabled={!isTouchDevice}
+          enableRotate={!isTouchDevice}
           enablePan={false}
           enableZoom={false}
           enableDamping
