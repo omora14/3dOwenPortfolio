@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   // R3F's <Canvas> double-mounts under StrictMode in dev, which can exhaust
   // the browser's WebGL context budget on macOS and produce
   // "Error creating WebGL context". Keep it off so the GL context is created
