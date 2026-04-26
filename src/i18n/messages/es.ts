@@ -91,6 +91,8 @@ const messages: Record<MessageKey, string> = {
   "terminal.prompt": "C:\\OWEN>",
 
   "resetView.button": "Restablecer vista",
+  "boot.enter": "Iniciar?",
+  "boot.exit": "Salir",
 };
 
 export default messages;

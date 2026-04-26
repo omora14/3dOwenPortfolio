@@ -2,8 +2,10 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { RetroDesktopShell } from "./RetroOS/Desktop";
+import { useTranslations } from "@/i18n/LocaleProvider";
 
 export default function FullscreenOS() {
+  const t = useTranslations();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const interactiveRef = useRef(false);
   /** OS shell mounts only once the user reaches the fullscreen handoff — not at page load. */
@@ -42,6 +44,12 @@ export default function FullscreenOS() {
     return () => window.cancelAnimationFrame(raf);
   }, []);
 
+  const onExit = () => {
+    if (typeof window === "undefined") return;
+    window.__resetCameraView?.();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div
       ref={wrapperRef}
@@ -57,6 +65,27 @@ export default function FullscreenOS() {
       }}
     >
       {shellReady ? <RetroDesktopShell showCRTOverlay={false} /> : null}
+      <button
+        type="button"
+        onClick={onExit}
+        style={{
+          position: "fixed",
+          top: 14,
+          right: 14,
+          zIndex: 12000,
+          padding: "6px 12px",
+          fontSize: 12,
+          fontFamily: "ms_sans_serif, system-ui, sans-serif",
+          color: "#111",
+          background: "#c0c0c0",
+          border: "2px solid",
+          borderColor: "#ffffff #808080 #808080 #ffffff",
+          boxShadow: "2px 2px 0 rgba(0,0,0,0.45)",
+          cursor: "pointer",
+        }}
+      >
+        {t("boot.exit")}
+      </button>
     </div>
   );
 }

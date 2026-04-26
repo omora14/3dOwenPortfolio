@@ -89,6 +89,8 @@ const messages = {
   "terminal.prompt": "C:\\OWEN>",
 
   "resetView.button": "Reset View",
+  "boot.enter": "Boot?",
+  "boot.exit": "Exit",
 } as const;
 
 export default messages;

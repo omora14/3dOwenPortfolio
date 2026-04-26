@@ -7,6 +7,7 @@ import { LocaleProvider } from "@/i18n/LocaleProvider";
 import { OSProvider } from "./RetroOS/state";
 import FullscreenOS from "./FullscreenOS";
 import ResetViewButton from "./ResetViewButton";
+import BootEntryButton from "./BootEntryButton";
 
 const Scene = dynamic(() => import("./Scene"), { ssr: false });
 
@@ -87,6 +88,7 @@ export default function PortfolioOS() {
         </div>
         <FullscreenOS />
         <ResetViewButton />
+        <BootEntryButton />
         <LoaderWrap $visible={showLoader}>
           <LoaderPanel>
             <LoaderTitle>Booting Owen95...</LoaderTitle>
