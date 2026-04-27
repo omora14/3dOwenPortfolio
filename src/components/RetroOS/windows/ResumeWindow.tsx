@@ -52,17 +52,70 @@ const InlineLink = styled.a`
   cursor: pointer;
 `;
 
+const MobileFallback = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 14px;
+  color: #f4f4f4;
+  background: linear-gradient(180deg, #2f2f2f 0%, #202020 100%);
+`;
+
+const MobileFallbackTitle = styled.strong`
+  font-size: 13px;
+  letter-spacing: 0.02em;
+`;
+
+const MobileFallbackBody = styled.p`
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  max-width: 320px;
+`;
+
 export default function ResumeWindow() {
   const t = useTranslations();
+  const [isMobileViewport, setIsMobileViewport] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+      return;
+    }
+    const mq = window.matchMedia("(max-width: 768px)");
+    const apply = () => setIsMobileViewport(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
 
   return (
     <OSWindow id="resume" bodyStyle={{ padding: 6 }}>
       <Layout>
         <Frame>
-          <iframe
-            src={`${profile.resume}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
-            title="Owen Morales Resume"
-          />
+          {isMobileViewport ? (
+            <MobileFallback>
+              <MobileFallbackTitle>{t("windows.resume.mobileBlockedTitle")}</MobileFallbackTitle>
+              <MobileFallbackBody>{t("windows.resume.mobileBlockedBody")}</MobileFallbackBody>
+              <Button
+                size="sm"
+                onClick={() =>
+                  window.open(profile.resume, "_blank", "noopener,noreferrer")
+                }
+                style={{ fontSize: 11 }}
+              >
+                {t("windows.resume.openTab")}
+              </Button>
+            </MobileFallback>
+          ) : (
+            <iframe
+              src={`${profile.resume}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+              title="Owen Morales Resume"
+            />
+          )}
         </Frame>
         <Caption>
           <span>Owen-Morales-Resume.pdf · Acrobat Reader 3.0</span>

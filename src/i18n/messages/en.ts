@@ -69,6 +69,9 @@ const messages = {
 
   "windows.resume.download": "Download",
   "windows.resume.openTab": "Open in New Tab",
+  "windows.resume.mobileBlockedTitle": "Resume preview unavailable on mobile",
+  "windows.resume.mobileBlockedBody":
+    "This embedded PDF viewer may not load reliably on mobile devices. Please open the resume in a new tab.",
   "windows.projects.techStack": "Tech Stack",
   "windows.projects.highlights": "Highlights",
   "windows.projects.openGithub": "Open on GitHub",

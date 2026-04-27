@@ -71,6 +71,9 @@ const messages: Record<MessageKey, string> = {
 
   "windows.resume.download": "Descargar",
   "windows.resume.openTab": "Abrir en nueva pestaña",
+  "windows.resume.mobileBlockedTitle": "Vista previa no disponible en móvil",
+  "windows.resume.mobileBlockedBody":
+    "Este visor PDF incrustado puede no cargar bien en dispositivos móviles. Abre el resume en una nueva pestaña.",
   "windows.projects.techStack": "Tecnologias",
   "windows.projects.highlights": "Puntos clave",
   "windows.projects.openGithub": "Abrir en GitHub",
