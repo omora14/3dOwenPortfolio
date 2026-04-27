@@ -98,6 +98,13 @@ const LangPill = styled(Button)`
   letter-spacing: 0.5px;
 `;
 
+const ExitPill = styled(Button)`
+  height: 22px !important;
+  font-size: 11px !important;
+  padding: 0 7px !important;
+  font-weight: bold;
+`;
+
 export default function Taskbar() {
   const { windows, focusWindow, toggleMinimize, topZ } = useOS();
   const { locale, toggleLocale } = useLocale();
@@ -105,6 +112,11 @@ export default function Taskbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const list = (Object.keys(windows) as WindowId[]).filter((k) => windows[k].open);
+  const onExit = () => {
+    if (typeof window === "undefined") return;
+    window.__resetCameraView?.();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <Bar onClick={() => setMenuOpen(false)}>
@@ -153,6 +165,16 @@ export default function Taskbar() {
       </Pills>
 
       <Tray>
+        <ExitPill
+          onClick={(e) => {
+            e.stopPropagation();
+            onExit();
+          }}
+          aria-label={t("boot.exit")}
+          title={t("boot.exit")}
+        >
+          {t("boot.exit")}
+        </ExitPill>
         <LangPill
           onClick={(e) => {
             e.stopPropagation();
