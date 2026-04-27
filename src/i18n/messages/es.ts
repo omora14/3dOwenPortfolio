@@ -74,6 +74,9 @@ const messages: Record<MessageKey, string> = {
   "windows.resume.mobileBlockedTitle": "Vista previa no disponible en móvil",
   "windows.resume.mobileBlockedBody":
     "Este visor PDF incrustado puede no cargar bien en dispositivos móviles. Abre el resume en una nueva pestaña.",
+  "windows.resume.previewUnavailableTitle": "Vista previa del resume no disponible",
+  "windows.resume.previewUnavailableBody":
+    "No se pudo cargar la vista previa PDF en este navegador. Abre el resume en una nueva pestaña.",
   "windows.projects.techStack": "Tecnologias",
   "windows.projects.highlights": "Puntos clave",
   "windows.projects.openGithub": "Abrir en GitHub",

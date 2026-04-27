@@ -72,6 +72,9 @@ const messages = {
   "windows.resume.mobileBlockedTitle": "Resume preview unavailable on mobile",
   "windows.resume.mobileBlockedBody":
     "This embedded PDF viewer may not load reliably on mobile devices. Please open the resume in a new tab.",
+  "windows.resume.previewUnavailableTitle": "Resume preview unavailable",
+  "windows.resume.previewUnavailableBody":
+    "The inline PDF preview could not be loaded in this browser. Please open the resume in a new tab.",
   "windows.projects.techStack": "Tech Stack",
   "windows.projects.highlights": "Highlights",
   "windows.projects.openGithub": "Open on GitHub",

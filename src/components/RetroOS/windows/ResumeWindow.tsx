@@ -80,6 +80,8 @@ const MobileFallbackBody = styled.p`
 export default function ResumeWindow() {
   const t = useTranslations();
   const [isMobileViewport, setIsMobileViewport] = React.useState(false);
+  const [desktopPreviewUrl, setDesktopPreviewUrl] = React.useState<string | null>(null);
+  const [previewFailed, setPreviewFailed] = React.useState(false);
 
   React.useEffect(() => {
     if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
@@ -91,6 +93,39 @@ export default function ResumeWindow() {
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
   }, []);
+
+  React.useEffect(() => {
+    if (isMobileViewport) {
+      setDesktopPreviewUrl(null);
+      setPreviewFailed(false);
+      return;
+    }
+    let cancelled = false;
+    let objectUrl: string | null = null;
+
+    const loadPreview = async () => {
+      try {
+        setPreviewFailed(false);
+        const response = await fetch(profile.resume);
+        if (!response.ok) throw new Error(`Failed to fetch resume: ${response.status}`);
+        const blob = await response.blob();
+        if (cancelled) return;
+        objectUrl = URL.createObjectURL(blob);
+        setDesktopPreviewUrl(objectUrl);
+      } catch {
+        if (!cancelled) {
+          setPreviewFailed(true);
+          setDesktopPreviewUrl(null);
+        }
+      }
+    };
+
+    loadPreview();
+    return () => {
+      cancelled = true;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, [isMobileViewport]);
 
   return (
     <OSWindow id="resume" bodyStyle={{ padding: 6 }}>
@@ -111,10 +146,28 @@ export default function ResumeWindow() {
               </Button>
             </MobileFallback>
           ) : (
-            <iframe
-              src={`${profile.resume}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
-              title="Owen Morales Resume"
-            />
+            <>
+              {desktopPreviewUrl && !previewFailed ? (
+                <iframe
+                  src={`${desktopPreviewUrl}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+                  title="Owen Morales Resume"
+                />
+              ) : (
+                <MobileFallback>
+                  <MobileFallbackTitle>{t("windows.resume.previewUnavailableTitle")}</MobileFallbackTitle>
+                  <MobileFallbackBody>{t("windows.resume.previewUnavailableBody")}</MobileFallbackBody>
+                  <Button
+                    size="sm"
+                    onClick={() =>
+                      window.open(profile.resume, "_blank", "noopener,noreferrer")
+                    }
+                    style={{ fontSize: 11 }}
+                  >
+                    {t("windows.resume.openTab")}
+                  </Button>
+                </MobileFallback>
+              )}
+            </>
           )}
         </Frame>
         <Caption>
