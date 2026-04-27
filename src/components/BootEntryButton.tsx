@@ -6,6 +6,7 @@ import { useTranslations } from "@/i18n/LocaleProvider";
 export default function BootEntryButton() {
   const t = useTranslations();
   const [visible, setVisible] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   useEffect(() => {
     let raf = 0;
@@ -17,6 +18,17 @@ export default function BootEntryButton() {
     };
     raf = window.requestAnimationFrame(loop);
     return () => window.cancelAnimationFrame(raf);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+      return;
+    }
+    const mq = window.matchMedia("(max-width: 768px)");
+    const apply = () => setIsMobileViewport(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, []);
 
   const onBoot = () => {
@@ -48,12 +60,12 @@ export default function BootEntryButton() {
         border: "2px solid",
         borderColor: "#ffffff #808080 #808080 #ffffff",
         cursor: "pointer",
-        opacity: visible ? 1 : 0,
-        pointerEvents: visible ? "auto" : "none",
+        opacity: visible && isMobileViewport ? 1 : 0,
+        pointerEvents: visible && isMobileViewport ? "auto" : "none",
         transition: "opacity 180ms ease",
         boxShadow: "2px 2px 0 rgba(0,0,0,0.45)",
       }}
-      aria-hidden={!visible}
+      aria-hidden={!visible || !isMobileViewport}
     >
       {t("boot.enter")}
     </button>
