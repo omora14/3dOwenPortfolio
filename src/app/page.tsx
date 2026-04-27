@@ -11,6 +11,7 @@ const PortfolioOS = dynamic(() => import("@/components/PortfolioOS"), {
 export default function Home() {
   const [hideHint, setHideHint] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -33,6 +34,17 @@ export default function Home() {
     return () => mq.removeEventListener("change", apply);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+      return;
+    }
+    const mq = window.matchMedia("(max-width: 768px)");
+    const apply = () => setIsMobileViewport(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
   return (
     <main>
       <PortfolioOS />
@@ -46,7 +58,7 @@ export default function Home() {
       <div
         className="scroll-hint"
         style={{
-          opacity: hideHint || isTouchDevice ? 0 : 0.9,
+          opacity: hideHint || isTouchDevice || isMobileViewport ? 0 : 0.9,
           pointerEvents: "none",
         }}
       >
