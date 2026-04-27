@@ -85,7 +85,7 @@ export default function ResumeWindow() {
     if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
       return;
     }
-    const mq = window.matchMedia("(max-width: 768px)");
+    const mq = window.matchMedia("(hover: none) and (pointer: coarse)");
     const apply = () => setIsMobileViewport(mq.matches);
     apply();
     mq.addEventListener("change", apply);

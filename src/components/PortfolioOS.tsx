@@ -66,16 +66,38 @@ const ProgressFill = styled.div<{ $progress: number }>`
   transition: width 140ms ease-out;
 `;
 
+const LoaderWarning = styled.div`
+  margin-top: 8px;
+  padding: 8px 10px;
+  border: 1px solid #9a7d00;
+  background: #fff8cf;
+  color: #3a2f00;
+  font-size: 11px;
+  line-height: 1.35;
+`;
+
 export default function PortfolioOS() {
   const [progress, setProgress] = useState(0);
   const [sceneReady, setSceneReady] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
+  const [showStuckWarning, setShowStuckWarning] = useState(false);
 
   useEffect(() => {
     if (!sceneReady) return;
     const t = window.setTimeout(() => setShowLoader(false), 280);
     return () => window.clearTimeout(t);
   }, [sceneReady]);
+
+  useEffect(() => {
+    if (sceneReady || progress < 99) {
+      setShowStuckWarning(false);
+      return;
+    }
+    const t = window.setTimeout(() => {
+      setShowStuckWarning(true);
+    }, 4500);
+    return () => window.clearTimeout(t);
+  }, [progress, sceneReady]);
 
   return (
     <LocaleProvider>
@@ -109,6 +131,13 @@ export default function PortfolioOS() {
               <span>Initializing scene</span>
               <strong>{Math.round(progress)}%</strong>
             </div>
+            {showStuckWarning && (
+              <LoaderWarning>
+                Stuck at 100%? If you are using Brave/Chromium with hardware
+                acceleration disabled, enable it and refresh. You can also open
+                this site in another browser.
+              </LoaderWarning>
+            )}
           </LoaderPanel>
         </LoaderWrap>
       </OSProvider>
