@@ -10,6 +10,7 @@ const PortfolioOS = dynamic(() => import("@/components/PortfolioOS"), {
 
 export default function Home() {
   const [hideHint, setHideHint] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -19,6 +20,17 @@ export default function Home() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+      return;
+    }
+    const mq = window.matchMedia("(pointer: coarse)");
+    const apply = () => setIsTouchDevice(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, []);
 
   return (
@@ -33,7 +45,10 @@ export default function Home() {
 
       <div
         className="scroll-hint"
-        style={{ opacity: hideHint ? 0 : 0.9, pointerEvents: "none" }}
+        style={{
+          opacity: hideHint || isTouchDevice ? 0 : 0.9,
+          pointerEvents: "none",
+        }}
       >
         Scroll to boot
         <span className="arrow" />
