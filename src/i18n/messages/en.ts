@@ -33,6 +33,9 @@ const messages = {
 
   "os.langSwitch.toEs": "ES",
   "os.langSwitch.toEn": "EN",
+  "os.coach.title": "Move your view around",
+  "os.coach.subtitle": "Drag to explore the desktop in 3D.",
+  "os.coach.resetHint": "If the camera bugs out, reset view and try again.",
 
   "windows.about.heading": "About Owen",
   "windows.about.education": "Education",

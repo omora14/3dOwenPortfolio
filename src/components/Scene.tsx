@@ -5,9 +5,11 @@ import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Environment, OrbitControls, useProgress } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
+import styled from "styled-components";
 import Computer, { type ScreenInfo } from "./Computer";
 import ScreenOverlay from "./ScreenOverlay";
 import CameraRig from "./CameraRig";
+import { useTranslations } from "@/i18n/LocaleProvider";
 
 const FOV = 32;
 const START: [number, number, number] = [0, 1.2, 5.2];
@@ -17,15 +19,79 @@ type SceneProps = {
   onReadyChange?: (ready: boolean) => void;
 };
 
+const MoveCoach = styled.div`
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f2f6ff;
+  text-align: center;
+  animation: moveCoachFade 380ms ease-out 6.62s forwards;
+
+  @keyframes moveCoachFade {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+`;
+
+const SwipeLane = styled.div`
+  margin: 10px auto 8px;
+  width: min(210px, 62vw);
+  height: 38px;
+  border-radius: 999px;
+  border: 1px dashed rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+`;
+
+const MoveCoachCard = styled.div`
+  width: min(500px, calc(100vw - 28px));
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
+  background: rgba(8, 14, 24, 0.55);
+  padding: 14px 16px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.42);
+`;
+
+const SwipeDot = styled.div`
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0 25%, #ffd8c4 55%, #eeaf8a 100%);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  animation: swipeMove 1.05s ease-in-out infinite;
+
+  @keyframes swipeMove {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(calc(min(210px, 62vw) - 42px));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+`;
+
 export default function Scene({ onProgressChange, onReadyChange }: SceneProps) {
   const [screenInfo, setScreenInfo] = useState<ScreenInfo | null>(null);
   const [glError, setGlError] = useState<string | null>(null);
   const [showDebugBox, setShowDebugBox] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [showMoveCoach, setShowMoveCoach] = useState(true);
   const { active, progress } = useProgress();
   const orbitRef = useRef<OrbitControlsImpl | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const t = useTranslations();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -111,6 +177,12 @@ export default function Scene({ onProgressChange, onReadyChange }: SceneProps) {
   );
 
   useEffect(() => {
+    if (active || progress < 100) return;
+    const timer = window.setTimeout(() => setShowMoveCoach(false), 7000);
+    return () => window.clearTimeout(timer);
+  }, [active, progress]);
+
+  useEffect(() => {
     if (!isTouchDevice) return;
     const canvas = canvasRef.current;
     const controls = orbitRef.current;
@@ -187,6 +259,7 @@ export default function Scene({ onProgressChange, onReadyChange }: SceneProps) {
       style={{
         width: "100%",
         height: "100%",
+        position: "relative",
         touchAction: isTouchDevice ? "none" : "pan-y",
         transition: "opacity 120ms linear",
       }}
@@ -270,6 +343,39 @@ export default function Scene({ onProgressChange, onReadyChange }: SceneProps) {
 
         <CameraRig start={START} screenInfo={screenInfo} orbitRef={orbitRef} />
       </Canvas>
+      {showMoveCoach && !active && progress >= 100 && (
+        <MoveCoach>
+          <MoveCoachCard>
+            <div style={{ fontWeight: 700, fontSize: 16 }}>{t("os.coach.title")}</div>
+            <div style={{ fontSize: 13, opacity: 0.95 }}>{t("os.coach.subtitle")}</div>
+            <SwipeLane>
+              <SwipeDot />
+            </SwipeLane>
+            <div style={{ fontSize: 11, opacity: 0.9, marginBottom: 8 }}>
+              {t("os.coach.resetHint")}
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                window.__resetCameraView?.();
+                setShowMoveCoach(false);
+              }}
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                borderRadius: 5,
+                border: "1px solid #fff",
+                background: "#d8eeff",
+                color: "#0e2e4c",
+                padding: "3px 9px",
+                cursor: "pointer",
+              }}
+            >
+              {t("resetView.button")}
+            </button>
+          </MoveCoachCard>
+        </MoveCoach>
+      )}
     </div>
   );
 }

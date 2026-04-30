@@ -35,6 +35,9 @@ const messages: Record<MessageKey, string> = {
 
   "os.langSwitch.toEs": "ES",
   "os.langSwitch.toEn": "EN",
+  "os.coach.title": "Mueve la vista",
+  "os.coach.subtitle": "Arrastra para explorar el escritorio en 3D.",
+  "os.coach.resetHint": "Si la camara falla, restablece la vista e intenta de nuevo.",
 
   "windows.about.heading": "Sobre Owen",
   "windows.about.education": "Educacion",

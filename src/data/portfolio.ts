@@ -34,7 +34,7 @@ export const profile = {
     "Software Engineer & Data Scientist from Costa Rica. Building products that matter.",
   storyTitle: "From the shores of Costa Rica to the frontier of software.",
   origin: "Costa Rica",
-  photo: "/pp.jpg",
+  photo: "/pp.jpeg",
   wallpaper: "/costarica-beach.webp",
   resume: "/Owen-Morales-Resume.pdf",
 };
