@@ -83,6 +83,7 @@ const messages: Record<MessageKey, string> = {
   "windows.projects.techStack": "Tecnologias",
   "windows.projects.highlights": "Puntos clave",
   "windows.projects.openGithub": "Abrir en GitHub",
+  "windows.projects.openSite": "Abrir coleccion",
   "windows.projects.privateRepo":
     "Este repositorio es privado o pertenece a otra organizacion. Escribeme en Contacto y te muestro el proyecto.",
 

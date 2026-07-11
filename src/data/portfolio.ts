@@ -276,6 +276,25 @@ export const projects: ProjectItem[] = [
       "Statistical modeling",
     ],
   },
+  {
+    id: "analysis-portfolio",
+    title: "Analysis Portfolio",
+    subtitle: "Data Science Collection & R",
+    tags: ["R", "Data Visualization", "Exploratory Analysis", "Spatial Analysis", "Text Analysis", "Data Wrangling"],
+    github: "https://omora14.github.io/analysis-portfolio/projects.html",
+    date: "2024–2026",
+    highlight: true,
+    description:
+      "A curated collection of data science projects spanning visualization, exploratory analysis, wrangling, maps, and text — mostly in R.",
+    longDescription:
+      "An online portfolio of selected data analysis and visualization work, grouped by theme: visualization critiques and redesigns, exploratory studies (flight delays, gun deaths, baseball programs), data wrangling pipelines, spatial maps (Costa Rica species, Idaho dams, US footprints), and text analysis. Built primarily in R as a living collection of applied data science projects.",
+    metrics: [
+      "20+ analyses across 5 themes",
+      "Primarily R-based workflows",
+      "Viz, EDA, wrangling, maps, NLP",
+      "Published project gallery",
+    ],
+  },
 ];
 
 export const education: EducationItem[] = [

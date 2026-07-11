@@ -81,6 +81,7 @@ const messages = {
   "windows.projects.techStack": "Tech Stack",
   "windows.projects.highlights": "Highlights",
   "windows.projects.openGithub": "Open on GitHub",
+  "windows.projects.openSite": "Open collection",
   "windows.projects.privateRepo":
     "This repo is private or owned by another organization. Reach out via Contact for a walkthrough.",
 

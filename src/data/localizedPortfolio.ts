@@ -192,6 +192,18 @@ for (const project of projectsEs) {
       "Analisis de datos de mercado",
       "Modelado estadistico",
     ];
+  } else if (project.id === "analysis-portfolio") {
+    project.subtitle = "Coleccion de Ciencia de Datos y R";
+    project.description =
+      "Una coleccion curada de proyectos de ciencia de datos: visualizacion, analisis exploratorio, limpieza, mapas y texto — principalmente en R.";
+    project.longDescription =
+      "Portafolio en linea de analisis y visualizacion de datos agrupados por tema: criticas y rediseños de visualizacion, estudios exploratorios, pipelines de limpieza, mapas espaciales y analisis de texto. Construido principalmente en R como una coleccion viva de proyectos aplicados de ciencia de datos.";
+    project.metrics = [
+      "Mas de 20 analisis en 5 temas",
+      "Flujos principalmente en R",
+      "Viz, EDA, limpieza, mapas, NLP",
+      "Galeria de proyectos publicada",
+    ];
   }
 }
 

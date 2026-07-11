@@ -177,7 +177,10 @@ export default function ProjectsWindow() {
               <Button
                 onClick={() => window.open(project.github, "_blank", "noopener,noreferrer")}
               >
-                ▶ {t("windows.projects.openGithub")}
+                ▶{" "}
+                {project.github.includes("github.com")
+                  ? t("windows.projects.openGithub")
+                  : t("windows.projects.openSite")}
               </Button>
             </Actions>
           ) : (
