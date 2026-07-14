@@ -10,7 +10,7 @@ import {
 const aboutEs = [
   "Creci en la costa pacifica de Costa Rica, un lugar que marco mis raices y me dio un amor profundo por este mundo. Desde muy temprano, la tecnologia me fascino. Antes de venir a Estados Unidos, dedique dos anos de mi vida a servir una mision: ayudando a personas, aprendiendo a escuchar y creciendo de formas que no esperaba. Mi familia ha sido la base de todo: me ha apoyado, impulsado y creido en mi para convertirme no solo en lo que quiero ser, sino en lo que siempre he sonado.",
   "Ese camino me trajo a Estados Unidos, donde estudio Computer Science en BYU-Idaho mientras complete un Associate en Business Statistics en BYU. He mantenido un GPA de 3.98 no por perseguir numeros, sino porque realmente amo aprender.",
-  "En los ultimos anos pase de escribir scripts de automatizacion en Verizon, a crear integraciones en BYU que ahorran mas de $110K al ano, a ayudar a millones de usuarios de FamilySearch con software confiable, y a cofundar Impulsa, una plataforma que escalo a decenas de miles de usuarios. La ciencia de datos y la IA estan presentes en todo lo que construyo: creo que los mejores ingenieros entienden tanto el sistema como la historia detras de los datos.",
+  "En los ultimos anos pase de escribir scripts de automatizacion en Verizon, a crear integraciones en BYU que ahorran mas de $110K al ano, a ayudar a millones de usuarios de FamilySearch con software confiable, y a cofundar Daily Disciple, una plataforma que escalo a decenas de miles de usuarios. La ciencia de datos y la IA estan presentes en todo lo que construyo: creo que los mejores ingenieros entienden tanto el sistema como la historia detras de los datos.",
   "Cuando no estoy programando, me encuentras jugando Rainbow Six o compartiendo tiempo con las personas que mas quiero. Creo en construir rapido, aprender aun mas rapido y nunca perder de vista lo que importa.",
 ];
 
@@ -35,11 +35,11 @@ const experienceEs = [
     title: "Desarrollador de Software",
     period: "Mayo 2024 - Presente",
     bullets: [
-      "Arquitecte un flujo de parcheo de datos integrando Genesys, iPaaS y JavaScript para agregar metadatos a mas de 2,000 tickets diarios, aplicando analisis con Python para habilitar modelos de regresion lineal.",
-      "Entregue mas de 350 integraciones de sistemas y renove mas de 30 reportes de Power BI en 15+ departamentos, apoyando a mas de 100,000 usuarios y decisiones basadas en datos que ahorraron mas de $110K al ano.",
-      "Disene e implemente un sistema impulsado por IA que extrae articulos de Knowledge Base a Markdown para ingestion en LLMs, administrando 5,000+ interacciones semanales con alta precision.",
-      "Consolide una plataforma modular de CSAT en TypeScript, unificando 21 flujos dispersos en una sola interfaz.",
-      "Acelere en 93% la entrega de encuestas al reingenierizar y optimizar flujos complejos de backend.",
+      "Arquitecte un flujo escalable de parcheo de datos integrando Genesys, iPaaS y JavaScript para agregar metadatos esenciales a mas de 2,000 tickets diarios, ejecutando analisis en Python que habilita modelado de regresion lineal avanzado.",
+      "Entregue mas de 350 integraciones de sistemas actualizando mas de 30 dashboards de Power BI en 15+ departamentos, apoyando a mas de 100,000 usuarios y decisiones estrategicas basadas en datos que ahorraron mas de $110K anuales.",
+      "Formule un modelo seguro de limpieza de PII con Python, Microsoft Presidio y validacion Ollama, sanitizando transcripciones de Genesys que alimentan pipelines automatizados de Copilot en TeamDynamix.",
+      "Construi una knowledge base serverless en React y TypeScript con GitHub Pages y Octokit APIs, centralizando documentacion tecnica interna sin dependencias de bases de datos externas.",
+      "Acelere la entrega de encuestas en 93%, reingenierizando 21 flujos de backend dispersos con TypeScript.",
     ],
   },
   {
@@ -47,9 +47,9 @@ const experienceEs = [
     title: "Cofundador",
     period: "Mayo 2025 - Presente",
     bullets: [
-      "Funde y escale una plataforma integral de productividad a 18,000+ usuarios activos, asegurando alianzas con Toyota, Microsoft, Google e Instituto Joule para modernizar flujos empresariales.",
-      "Presente modelos de negocio a stakeholders para asegurar capital y contratar un equipo de ingenieria, acelerando la expansion al mercado hispanohablante.",
-      "Desarrolle la infraestructura central con React, Expo y Node.js, construyendo seguimiento en tiempo real que aumento la finalizacion de tareas en 76% y redujo churn en 32%.",
+      "Lidere una plataforma integral de productividad que alcanzo 18,000+ usuarios activos, asegurando alianzas estrategicas con empresas Fortune 500 para modernizar flujos empresariales.",
+      "Presente modelos de negocio para asegurar capital y contratar un equipo de ingenieria, impulsando la expansion al mercado hispanohablante y la adquisicion global de usuarios.",
+      "Disene la infraestructura central con React, Expo y Node.js, estableciendo seguimiento en tiempo real que aumento la finalizacion de tareas en 76% y redujo el churn en 32%.",
     ],
   },
   {
@@ -57,9 +57,9 @@ const experienceEs = [
     title: "Asistente de Ensenanza de CS",
     period: "Mayo 2026 - Presente",
     bullets: [
-      "Valide arquitecturas cloud-native con AWS, Docker y Kubernetes, optimizando asignacion de recursos y buenas practicas de despliegue.",
-      "Instrui a mas de 100 estudiantes en HTML, CSS y JavaScript avanzados con estrategias interactivas para mejorar dominio tecnico.",
-      "Impulse mejores practicas de CI/CD e IaC, agilizando flujos de entrega para mas de 1,000 tareas automatizadas.",
+      "Valide arquitecturas cloud-native con AWS, Docker y Kubernetes, aplicando cumplimiento de escalado serverless, optimizando recursos y estableciendo practicas de despliegue estandar.",
+      "Mentore a mas de 100 estudiantes en Cloud Development y WDD 131 Dynamic Web Fundamentals, usando estrategias interactivas multinivel para maximizar dominio frontend y comprension fundamental.",
+      "Impulse mejores practicas modernas de CI/CD, agilizando flujos de entrega a traves de mas de 1,000 tareas automatizadas.",
     ],
   },
   {
@@ -67,9 +67,9 @@ const experienceEs = [
     title: "Ingeniero de Software",
     period: "Abr 2025 - Oct 2025",
     bullets: [
-      "Orqueste mas de 100 despliegues automatizados con C# y Azure Functions como ingeniero QA principal, logrando cero downtime critico para 13.7M de usuarios.",
-      "Transforme pruebas manuales en pipelines de integracion continua end-to-end en C#, Java y Python, ampliando cobertura al 97%.",
-      "Refactorice 10,000+ lineas de codigo legacy, mejorando el rendimiento del sistema en 36% con suites optimizadas en Azure.",
+      "Orqueste mas de 100 releases automatizados con C# y Azure Functions garantizando fiabilidad de plataforma, mitigando riesgos de despliegue y manteniendo cero downtime critico para 13.7M de usuarios globales.",
+      "Transicione protocolos de testing manual a pipelines de integracion continua automatizados en C#, Java y Python, expandiendo cobertura al 97% y eliminando cuellos de botella operativos.",
+      "Refactorice 10,000+ lineas de codigo legacy critico, mejorando el rendimiento del sistema en 36% con suites optimizadas en Azure.",
     ],
   },
   {
@@ -77,8 +77,8 @@ const experienceEs = [
     title: "Investigador",
     period: "Sep 2023 - Mayo 2024",
     bullets: [
-      "Optimice pipelines empresariales con R, SQL, Snowflake y Python, integrando 87% de modelos predictivos requeridos para decisiones estrategicas.",
-      "Renove arquitectura CRM de UI/UX para aumentar productividad del personal en 34% sobre mas de 5,000 registros de clientes.",
+      "Optimice pipelines empresariales con R, SQL, Snowflake y Python, integrando 87% de los modelos predictivos requeridos para impulsar decisiones corporativas basadas en datos.",
+      "Renove la arquitectura UI/UX de Zoho CRM elevando la productividad del personal en 34% sobre mas de 5,000 registros, con mejor accesibilidad de datos, dashboards intuitivos y navegacion simplificada.",
     ],
   },
   {
@@ -86,9 +86,9 @@ const experienceEs = [
     title: "Tecnico IT Tier 3",
     period: "Feb 2022 - Sep 2023",
     bullets: [
-      "Dirigi operaciones Tier 3 para la division Visible de Verizon como lider tecnico de alto rendimiento, elevando metricas de resolucion.",
-      "Programe una herramienta de integracion C#/ASP.NET para JIRA, aumentando productividad interna en 78% y reduciendo tiempos de entrega en 34%.",
-      "Fortaleci arquitecturas de seguridad y conecte MTAS/MSAT con Salesforce, generando ahorros anuales de $148K.",
+      "Dirigi operaciones IT Tier 3 gestionando un equipo tecnico cross-funcional, simplificando la entrega operativa interna y elevando metricas de resolucion de tickets.",
+      "Programe una herramienta de integracion C#/ASP.NET que aumento la productividad del equipo en 78% y redujo tiempos de entrega en 34% en despliegues regionales de telecomunicaciones.",
+      "Fortaleci arquitecturas de seguridad empresarial vinculando MTAS/MSAT con Salesforce, generando $148K en ahorros.",
     ],
   },
 ];

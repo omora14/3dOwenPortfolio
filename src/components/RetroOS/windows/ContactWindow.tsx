@@ -90,7 +90,7 @@ export default function ContactWindow() {
           <Row>
             <span className="label">{t("windows.contact.resume")}</span>
             <a className="url" onClick={() => open(links.resume)}>
-              {links.resume}
+              {decodeURIComponent(links.resume.split("/").pop() || links.resume)}
             </a>
             <Button onClick={() => open(links.resume)}>
               {t("windows.contact.open")}

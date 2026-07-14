@@ -77,6 +77,11 @@ const MobileFallbackBody = styled.p`
   max-width: 320px;
 `;
 
+const RESUME_URL = profile.resume;
+const RESUME_FILENAME = decodeURIComponent(
+  RESUME_URL.split("/").pop() || "resume.pdf"
+);
+
 export default function ResumeWindow() {
   const t = useTranslations();
   const [isMobileViewport, setIsMobileViewport] = React.useState(false);
@@ -106,7 +111,7 @@ export default function ResumeWindow() {
     const loadPreview = async () => {
       try {
         setPreviewFailed(false);
-        const response = await fetch(profile.resume);
+        const response = await fetch(RESUME_URL);
         if (!response.ok) throw new Error(`Failed to fetch resume: ${response.status}`);
         const blob = await response.blob();
         if (cancelled) return;
@@ -138,7 +143,7 @@ export default function ResumeWindow() {
               <Button
                 size="sm"
                 onClick={() =>
-                  window.open(profile.resume, "_blank", "noopener,noreferrer")
+                  window.open(RESUME_URL, "_blank", "noopener,noreferrer")
                 }
                 style={{ fontSize: 11 }}
               >
@@ -159,7 +164,7 @@ export default function ResumeWindow() {
                   <Button
                     size="sm"
                     onClick={() =>
-                      window.open(profile.resume, "_blank", "noopener,noreferrer")
+                      window.open(RESUME_URL, "_blank", "noopener,noreferrer")
                     }
                     style={{ fontSize: 11 }}
                   >
@@ -171,13 +176,13 @@ export default function ResumeWindow() {
           )}
         </Frame>
         <Caption>
-          <span>Owen-Morales-Resume.pdf · Acrobat Reader 3.0</span>
+          <span>{RESUME_FILENAME} · Acrobat Reader 3.0</span>
           <span style={{ display: "flex", gap: 6, alignItems: "center" }}>
             <InlineLink
               onClick={() => {
                 const a = document.createElement("a");
-                a.href = profile.resume;
-                a.download = "Owen-Morales-Resume.pdf";
+                a.href = RESUME_URL;
+                a.download = RESUME_FILENAME;
                 a.click();
               }}
             >
@@ -186,7 +191,7 @@ export default function ResumeWindow() {
             <Button
               size="sm"
               onClick={() =>
-                window.open(profile.resume, "_blank", "noopener,noreferrer")
+                window.open(RESUME_URL, "_blank", "noopener,noreferrer")
               }
               style={{ height: 22, fontSize: 11 }}
             >
