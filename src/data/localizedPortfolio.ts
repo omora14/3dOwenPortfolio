@@ -10,19 +10,19 @@ import {
 const aboutEs = [
   "Creci en la costa pacifica de Costa Rica, un lugar que marco mis raices y me dio un amor profundo por este mundo. Desde muy temprano, la tecnologia me fascino. Antes de venir a Estados Unidos, dedique dos anos de mi vida a servir una mision: ayudando a personas, aprendiendo a escuchar y creciendo de formas que no esperaba. Mi familia ha sido la base de todo: me ha apoyado, impulsado y creido en mi para convertirme no solo en lo que quiero ser, sino en lo que siempre he sonado.",
   "Ese camino me trajo a Estados Unidos, donde estudio Computer Science en BYU-Idaho mientras complete un Associate en Business Statistics en BYU. He mantenido un GPA de 3.98 no por perseguir numeros, sino porque realmente amo aprender.",
-  "En los ultimos anos pase de escribir scripts de automatizacion en Verizon, a crear integraciones en BYU que ahorran mas de $110K al ano, a ayudar a millones de usuarios de FamilySearch con software confiable, y a cofundar Daily Disciple, una plataforma que escalo a decenas de miles de usuarios. La ciencia de datos y la IA estan presentes en todo lo que construyo: creo que los mejores ingenieros entienden tanto el sistema como la historia detras de los datos.",
+  "En los ultimos anos pase de escribir scripts de automatizacion en Verizon, a crear integraciones en BYU-Idaho que ahorran mas de $110K al ano, a ayudar a millones de usuarios de FamilySearch con software confiable, y a mentorar estudiantes en desarrollo cloud y web. La ciencia de datos y la IA estan presentes en todo lo que construyo: creo que los mejores ingenieros entienden tanto el sistema como la historia detras de los datos.",
   "Cuando no estoy programando, me encuentras jugando Rainbow Six o compartiendo tiempo con las personas que mas quiero. Creo en construir rapido, aprender aun mas rapido y nunca perder de vista lo que importa.",
 ];
 
 const educationEs = [
   {
-    degree: "Licenciatura en Ciencias de la Computacion",
+    degree: "Ciencias de la Computacion",
     school: "Brigham Young University - Idaho",
-    period: "Abr 2027 (Esperado)",
+    period: "Sep 2027",
     gpa: "3.98",
   },
   {
-    degree: "Asociado en Estadistica de Negocios",
+    degree: "Estadistica de Negocios",
     school: "Brigham Young University",
     period: "Abr 2024",
     gpa: "4.0",
@@ -35,27 +35,16 @@ const experienceEs = [
     title: "Desarrollador de Software",
     period: "Mayo 2024 - Presente",
     bullets: [
-      "Arquitecte un flujo escalable de parcheo de datos integrando Genesys, iPaaS y JavaScript para agregar metadatos esenciales a mas de 2,000 tickets diarios, ejecutando analisis en Python que habilita modelado de regresion lineal avanzado.",
-      "Entregue mas de 350 integraciones de sistemas actualizando mas de 30 dashboards de Power BI en 15+ departamentos, apoyando a mas de 100,000 usuarios y decisiones estrategicas basadas en datos que ahorraron mas de $110K anuales.",
-      "Formule un modelo seguro de limpieza de PII con Python, Microsoft Presidio y validacion Ollama, sanitizando transcripciones de Genesys que alimentan pipelines automatizados de Copilot en TeamDynamix.",
-      "Construi una knowledge base serverless en React y TypeScript con GitHub Pages y Octokit APIs, centralizando documentacion tecnica interna sin dependencias de bases de datos externas.",
-      "Acelere la entrega de encuestas en 93%, reingenierizando 21 flujos de backend dispersos con TypeScript.",
+      "Automatice el procesamiento de becas de Financial Aid via iPaaS y JavaScript, eliminando 98% de revision manual de solicitantes y ahorrando mas de $110K anuales en operaciones de ayuda financiera universitaria.",
+      "Construi una plataforma de observabilidad en TypeScript y React monitoreando mas de 600 integraciones de iPaaS, Programs y TeamDynamix en ciclos de 5 minutos, creando automaticamente tickets de alerta para operadores de sistemas.",
+      "Arquitecte pipelines de metadatos enriqueciendo mas de 2,000 tickets diarios de Genesys via iPaaS y JavaScript, habilitando analisis de regresion en Python para decisiones de personal y mejoras de calidad de servicio.",
+      "Disene sanitizacion de PII con Presidio y Ollama en transcripciones de Genesys para auto-ticketing seguro con Copilot.",
     ],
   },
   {
     ...experienceEn[1],
-    title: "Cofundador",
-    period: "Mayo 2025 - Presente",
-    bullets: [
-      "Lidere una plataforma integral de productividad que alcanzo 18,000+ usuarios activos, asegurando alianzas estrategicas con empresas Fortune 500 para modernizar flujos empresariales.",
-      "Presente modelos de negocio para asegurar capital y contratar un equipo de ingenieria, impulsando la expansion al mercado hispanohablante y la adquisicion global de usuarios.",
-      "Disene la infraestructura central con React, Expo y Node.js, estableciendo seguimiento en tiempo real que aumento la finalizacion de tareas en 76% y redujo el churn en 32%.",
-    ],
-  },
-  {
-    ...experienceEn[2],
     title: "Asistente de Ensenanza de CS",
-    period: "Mayo 2026 - Presente",
+    period: "Mayo 2026 - Sep 2026",
     bullets: [
       "Valide arquitecturas cloud-native con AWS, Docker y Kubernetes, aplicando cumplimiento de escalado serverless, optimizando recursos y estableciendo practicas de despliegue estandar.",
       "Mentore a mas de 100 estudiantes en Cloud Development y WDD 131 Dynamic Web Fundamentals, usando estrategias interactivas multinivel para maximizar dominio frontend y comprension fundamental.",
@@ -63,7 +52,7 @@ const experienceEs = [
     ],
   },
   {
-    ...experienceEn[3],
+    ...experienceEn[2],
     title: "Ingeniero de Software",
     period: "Abr 2025 - Oct 2025",
     bullets: [
@@ -73,7 +62,7 @@ const experienceEs = [
     ],
   },
   {
-    ...experienceEn[4],
+    ...experienceEn[3],
     title: "Investigador",
     period: "Sep 2023 - Mayo 2024",
     bullets: [
@@ -82,8 +71,8 @@ const experienceEs = [
     ],
   },
   {
-    ...experienceEn[5],
-    title: "Tecnico IT Tier 3",
+    ...experienceEn[4],
+    title: "Tecnico L3",
     period: "Feb 2022 - Sep 2023",
     bullets: [
       "Dirigi operaciones IT Tier 3 gestionando un equipo tecnico cross-funcional, simplificando la entrega operativa interna y elevando metricas de resolucion de tickets.",

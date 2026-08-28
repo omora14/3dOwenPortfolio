@@ -49,39 +49,27 @@ export const links = {
 export const aboutParagraphs: string[] = [
   "I grew up on the Pacific coast of Costa Rica, a place that shaped my roots and gave me a deep love for this world. From early on, technology fascinated me. Before coming to the US, I dedicated two years of my life serving a mission, helping people, learning to listen, and growing in ways I never expected. My family has been the foundation of everything: they've supported, pushed, and believed in me to become not just what I want to be, but what I've always dreamed of.",
   "That journey brought me to the United States, where I'm pursuing Computer Science at BYU-Idaho while I earned an Associate's in Business Statistics at BYU. I've maintained a 3.98 GPA not because I'm chasing numbers, but because I genuinely love learning.",
-  "Over the past few years I've gone from writing automation scripts at Verizon, to engineering integrations at BYU that save over $110K annually, to helping millions of FamilySearch users with reliable software, and co-founding Daily Disciple, a platform that scaled to tens of thousands of users. Data science and AI are woven into everything I build: I believe the best engineers understand both the system and the story behind the data.",
+  "Over the past few years I've gone from writing automation scripts at Verizon, to engineering integrations at BYU-Idaho that save over $110K annually, to helping millions of FamilySearch users with reliable software, and mentoring students in cloud and web development. Data science and AI are woven into everything I build: I believe the best engineers understand both the system and the story behind the data.",
   "When I'm not writing code, you'll find me on Rainbow Six, or spending time with the people I love most. I believe in shipping fast, learning faster, and never losing sight of what matters.",
 ];
 
 export const experience: ExperienceItem[] = [
   {
     title: "Software Developer",
-    company: "BYU",
+    company: "BYU-I",
     period: "May 2024 - Present",
-    tags: ["Python", "TypeScript", "Power BI", "Genesys", "React", "Presidio"],
+    tags: ["TypeScript", "React", "Python", "iPaaS", "Genesys", "Presidio"],
     bullets: [
-      "Architected a scalable data-patching workflow integrating Genesys, iPaaS, and JavaScript appending vital metadata to 2,000+ daily tickets, executing complex Python analysis enabling advanced linear regression modeling.",
-      "Delivered 350+ system integrations updating 30+ Power BI dashboards across 15+ departments, assisting 100,000+ users driving data-informed strategic decisions saving $110K+ in annual operational expenditures.",
-      "Formulated a secure PII-cleaning model applying Python, Microsoft Presidio, and Ollama validation, reliably sanitizing Genesys transcripts feeding Copilot auto-ticketing automated pipelines within TeamDynamix.",
-      "Constructed a serverless React and TypeScript knowledge base utilizing GitHub Pages and Octokit APIs, centralizing critical internal technical documentation circumventing external database architectural dependencies.",
-      "Accelerated survey delivery speeds by 93%, re-engineering 21 disparate backend workflows using TypeScript.",
-    ],
-  },
-  {
-    title: "Co-Founder",
-    company: "Daily Disciple",
-    period: "May 2025 - Present",
-    tags: ["React", "Expo", "Node.js"],
-    bullets: [
-      "Spearheaded a comprehensive productivity platform reaching 18,000+ active users, securing strategic business partnerships with Fortune 500 companies modernizing widespread enterprise procedural workflows.",
-      "Pitched comprehensive business models securing capital funding, subsequently hiring a dedicated engineering team driving rapid Spanish-market expansion accelerating global application user acquisition.",
-      "Engineered the foundational core infrastructure utilizing React, Expo, and Node.js, establishing robust real-time tracking features surging task completion rates 76% and mitigating overall user churn 32%.",
+      "Automated Financial Aid scholarship processing via iPaaS, and JavaScript, eliminating 98% of manual applicant review and saving $110K+ in annual operational costs across university financial aid operations.",
+      "Built a TypeScript and React observability platform monitoring 600+ iPaaS, Programs, and TeamDynamix integrations on 5-minute cycles, auto-creating incident alert tickets for systems operators.",
+      "Architected metadata pipelines enriching 2,000+ daily Genesys tickets via iPaaS and JavaScript workflows, enabling Python regression analysis driving data-informed staffing decisions and service quality improvements.",
+      "Engineered Presidio and Ollama PII sanitization on Genesys transcripts for secure Copilot auto-ticketing.",
     ],
   },
   {
     title: "CS Teaching Assistant",
-    company: "Brigham Young University - Idaho",
-    period: "May 2026 - Present",
+    company: "BYU-I",
+    period: "May 2026 - Sep 2026",
     tags: ["AWS", "Docker", "Kubernetes", "HTML/CSS/JS", "CI/CD"],
     bullets: [
       "Validated cloud-native AWS, Docker, and Kubernetes architectures, enforcing strict serverless scaling compliance, optimizing computational resource allocation, and establishing industry-standard deployment practices.",
@@ -111,7 +99,7 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
-    title: "IT Tier 3 Technician",
+    title: "L3 Technician",
     company: "Verizon",
     period: "Feb 2022 - Sep 2023",
     tags: ["C#", "ASP.NET", "Salesforce", "MTAS/MSAT"],
@@ -299,13 +287,13 @@ export const projects: ProjectItem[] = [
 
 export const education: EducationItem[] = [
   {
-    degree: "B.S. in Computer Science",
+    degree: "Computer Science",
     school: "Brigham Young University - Idaho",
-    period: "Apr 2027 (Expected)",
+    period: "Sep 2027",
     gpa: "3.98",
   },
   {
-    degree: "Associate in Business Statistics",
+    degree: "Business Statistics",
     school: "Brigham Young University",
     period: "Apr 2024",
     gpa: "4.0",

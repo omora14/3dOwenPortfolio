@@ -75,7 +75,7 @@ const INTRO_SEQUENCE: { delay: number; text: string }[] = [
   {
     delay: 280,
     text:
-      "Costa Rica → BYU-Idaho. 3.98 GPA. Verizon → BYU → FamilySearch → Daily Disciple. Ships fast, learns faster.",
+      "Costa Rica → BYU-Idaho. 3.98 GPA. Verizon → BYU-I → FamilySearch. Ships fast, learns faster.",
   },
   { delay: 280, text: "C:\\OWEN95> ls ~/projects/" },
   { delay: 220, text: "phronesis  secureFileSync  centurion  roomiesChore  emotisphere  kbConnector  stardewLike  cryptoRealityCheck" },

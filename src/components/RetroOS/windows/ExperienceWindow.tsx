@@ -79,24 +79,56 @@ const Chip = styled.span`
     ${({ theme }) => theme.borderDarkest} ${({ theme }) => theme.borderLightest};
 `;
 
+type ExperienceEntry = ReturnType<typeof getLocalizedPortfolio>["experience"][number];
+
+function shortCompany(name: string) {
+  return name
+    .replace("Brigham Young University - Idaho", "BYU-I")
+    .replace("Brigham Young University", "BYU")
+    .replace("CCS Global Tech", "CCS");
+}
+
+function shortRoleTitle(title: string) {
+  return title
+    .replace("Software Developer", "Software Dev")
+    .replace("CS Teaching Assistant", "CS TA")
+    .replace("Software Engineer", "SW Engineer")
+    .replace("Desarrollador de Software", "Software Dev")
+    .replace("Asistente de Ensenanza de CS", "CS TA")
+    .replace("Ingeniero de Software", "SW Engineer")
+    .replace("Tecnico L3", "L3 Tech");
+}
+
+function getTabLabel(job: ExperienceEntry, jobs: ExperienceEntry[]) {
+  const company = shortCompany(job.company);
+  const sameCompanyCount = jobs.filter(
+    (entry) => shortCompany(entry.company) === company
+  ).length;
+
+  if (sameCompanyCount > 1) {
+    const yearMatch = job.period.match(/\b(20\d{2})\b/);
+    const year = yearMatch ? `'${yearMatch[1].slice(-2)}` : "";
+    const role = shortRoleTitle(job.title);
+    return year ? `${role} ${year}` : role;
+  }
+
+  return company;
+}
+
 export default function ExperienceWindow() {
   const { locale } = useLocale();
   const t = useTranslations();
   const { experience } = getLocalizedPortfolio(locale);
   const [active, setActive] = useState(0);
   const job = experience[active];
-  const shortCompany = (name: string) =>
-    name
-      .replace("Brigham Young University - Idaho", "BYU-Idaho")
-      .replace("Brigham Young University", "BYU");
 
   return (
     <OSWindow id="experience">
       <Layout>
         <TabsRow value={active} onChange={(v) => setActive(Number(v))}>
           {experience.map((e, i) => (
-            <Tab key={i} value={i} title={`${e.title} @ ${e.company}`}>
-              {shortCompany(e.company)}
+            <Tab key={i} value={i} title={`${e.title} @ ${e.company} · ${e.period}`}>
+              {getTabLabel(e, experience)}
             </Tab>
           ))}
         </TabsRow>
